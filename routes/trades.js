@@ -15,6 +15,15 @@ router.post("/create", async (req, res) => {
     res.status(500).json({ error: "Failed to create trade." });
   }
 });
+// ✅ Get All Trades
+router.get("/", async (req, res) => {
+  try {
+    const trades = await Trade.find();
+    res.json(trades);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch trades." });
+  }
+});
 
 // ✅ Accept Trade
 router.post("/accept/:tradeID", async (req, res) => {
